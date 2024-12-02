@@ -1,0 +1,1 @@
+/usr/bin/aarch64-linux-gnu-g++ -g CMakeFiles/Hoverbot.dir/src/main.cpp.o CMakeFiles/Hoverbot.dir/src/sensors/gyro.cpp.o -o Hoverbot  -lwiringPi 
