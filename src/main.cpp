@@ -1,4 +1,4 @@
-#include "gyro.h"
+#include "sensors/gyro.h"
 #include <iostream>
 
 using namespace std;

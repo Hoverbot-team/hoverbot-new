@@ -1,4 +1,4 @@
-#include "gyro.h"
+#include "sensors/gyro.h"
 int fd;
 
 // Constructor: Initialize I2C communication with MPU6050

@@ -1,5 +1,5 @@
 CMakeFiles/Hoverbot.dir/src/main.cpp.o: /home/a/hoverbot/src/main.cpp \
- /usr/include/stdc-predef.h /home/a/hoverbot/include/gyro.h \
+ /usr/include/stdc-predef.h /home/a/hoverbot/include/sensors/gyro.h \
  /usr/local/include/wiringPiI2C.h \
  /usr/lib/gcc/aarch64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
  /usr/include/aarch64-linux-gnu/bits/libc-header-start.h \
