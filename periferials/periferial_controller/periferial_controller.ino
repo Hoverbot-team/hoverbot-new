@@ -23,8 +23,8 @@ void setup() {
 }
 
 void loop() {
-  if(Serial.available() > 0){
-      input = Serial.readString();
+  if(module.available() > 0){
+      input = module.readString();
       if(input.startsWith("$c ")){
         configure(input.substring(3));
 
