@@ -1,0 +1,2 @@
+# in this folder are located files for the periferial controller.
+in this folder are located files for the extensions too because the extension controller is merged in the same board. all extension code is here (execept for the raspberry code).

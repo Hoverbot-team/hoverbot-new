@@ -1,0 +1,6 @@
+pinout of extension connector
+
+|rx|tx|5v|gnd|high current port 1|high current port 2|power return|
+
+Power return is a pin for giving power to the robot (warning only 5v will be supported)
+high current ports will be programable more info in the protocol discription

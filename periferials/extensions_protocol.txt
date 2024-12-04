@@ -1,0 +1,21 @@
+to use the v1 extension protocol we use UART to send data or get data from the robot.
+first we need to configure the controller. you may ask why? well its for the controller to know what data to send,if using programable pins.
+commands to set something start with $ commands that get start with %.
+configuring should look something like this(send on uart).
+$c 0,gyro distance,additional_sensors
+$c = configure
+0 = we don't use high current programable pins
+gyro and distance = we want to get data from gyro and the distance sensor
+if you dont want to use anything just send $c without args
+so the command is like this
+$c <pins>,<get values>,<module_name>
+so commands should look something like this
+<command> <args>
+to program out pins we use $p command
+$p <pin number>,<value>
+to get the data we configured we use
+%g
+and wait for it to return the data
+we can send data to the raspberry but for that custom driver is required and we need to add the module identifier to the configure.
+we just add the module name to the configuration like shown in the example.
+how to write a driver for your module is in the drivers.txt file
