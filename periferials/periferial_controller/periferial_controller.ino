@@ -3,6 +3,7 @@
 class extension{
   struct ext_conf {
     bool is_using_pins = false;
+    int (*out_data[3])(void); 
   };
   public:
     ext_conf Config;
@@ -24,25 +25,31 @@ void setup() {
 void loop() {
   if(Serial.available() > 0){
       input = Serial.readString();
-      Serial.print(input);
       if(input.startsWith("$c ")){
-        Serial.print("starting the configuration");
         configure(input.substring(3));
 
       }
   } 
 }
 void configure(String args){
+  args.trim();
+  int input_length = args.length();
   bool failed = false;
-  if(args.length() <= 3){
-    failed = true;
+  if(args[4] == '1'){
+    Extension.Config.is_using_pins = true;
   }
-  else{
-    if(args[4] = '1'){
-      Extension.Config.is_using_pins = true;
-      Serial.println("pins configured");
-    }
+  else {
+    Extension.Config.is_using_pins = false;
   }
+  if(args.indexOf("gyro") != -1){
+    Extension.Config.out_data[0] = gyro;
+    Serial.println("gyro");
+  }
+  if(args.indexOf("distance") != 0){
+    Extension.Config.out_data[0] = distance;
+    Serial.println("distance");
+  }
+
 
 
 
@@ -50,4 +57,12 @@ void configure(String args){
   if(failed){
     digitalWrite(ERROR_LED_PIN, 1);
   }
+}
+//placeholder
+int gyro(){
+
+}
+//placeholder
+int distance(){
+
 }
