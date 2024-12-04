@@ -38,16 +38,16 @@ void configure(String args){
   if(args[4] == '1'){
     Extension.Config.is_using_pins = true;
   }
-  else {
+  else if (args[4] == '0') {
     Extension.Config.is_using_pins = false;
+  }else{
+    failed = true;
   }
   if(args.indexOf("gyro") != -1){
     Extension.Config.out_data[0] = gyro;
-    Serial.println("gyro");
   }
   if(args.indexOf("distance") != 0){
     Extension.Config.out_data[0] = distance;
-    Serial.println("distance");
   }
 
 
@@ -56,6 +56,8 @@ void configure(String args){
 
   if(failed){
     digitalWrite(ERROR_LED_PIN, 1);
+    Serial.print("err");
+    module.print("err");
   }
 }
 //placeholder
