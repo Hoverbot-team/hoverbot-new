@@ -11,6 +11,7 @@ include_directories(include)
 set(SOURCES
     src/main.cpp
     src/sensors/gyro.cpp
+    src/uart.cpp
     # Add other source files here
 )
 
