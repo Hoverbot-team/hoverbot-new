@@ -8,7 +8,7 @@ float mapValue(float x, float in_min, float in_max, float out_min, float out_max
 int main(){
 
 
-    UART uart;
+    UART uart(115200);
     MPU6050 gyro;
     while(1){
     }
