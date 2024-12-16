@@ -24,20 +24,8 @@ void setup() {
   module.begin(115200);//extension
   Serial.begin(115200);//debug
   Serial3.begin(115200);//raspberry
-  while(1){//waits for raspberry to respond
-    Serial.print("rr");
-    if(Serial.available()){
-      raspberryInput = Serial.readString();
-      if(raspberryInput = "ar"){
-        break;
-      }
-      else{
-        error();
-      }
+  chechRaspConnection();
 
-    }
-    
-  }
   
 }
 
@@ -92,4 +80,21 @@ void error(){
   delay(100);
   digitalWrite(ERROR_LED_PIN, 0);
   delay(100);
+}
+void chechRaspConnection(){
+  while(1){//waits for raspberry to respond
+  Serial3.print("rr");
+  if(Serial3.available()){
+    raspberryInput = Serial3.readString();
+    if(raspberryInput = "ar"){
+      break;
+    }
+    else{
+      error();
+    }
+
+   }
+    
+  }
+  
 }
