@@ -16,6 +16,7 @@ void checkArduinoConnection(){
         cout << "no connection" << endl;
     }
     uart.write("ar");
+    cout << "connection established" << endl;
 }
 int main(){
 
