@@ -10,6 +10,7 @@ include_directories(include)
 set(SOURCES
     src/main.cpp
     src/sensors/gyro.cpp
+    src/uart.cpp
 )
 
 add_executable(Hoverbot ${SOURCES})
