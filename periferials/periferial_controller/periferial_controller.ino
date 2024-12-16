@@ -76,24 +76,27 @@ int distance(){
 
 }
 void error(){
-  digitalWrite(ERROR_LED_PIN, 1);
-  delay(100);
-  digitalWrite(ERROR_LED_PIN, 0);
-  delay(100);
+  while(1){
+    digitalWrite(ERROR_LED_PIN, 1);
+    delay(100);
+    digitalWrite(ERROR_LED_PIN, 0);
+    delay(100);
+  }
+
 }
 void chechRaspConnection(){
   while(1){//waits for raspberry to respond
-  Serial3.print("rr");
-  if(Serial3.available()){
-    raspberryInput = Serial3.readString();
-    if(raspberryInput = "ar"){
-      break;
-    }
-    else{
-      error();
-    }
+    Serial3.print("rr");
+    if(Serial3.available()){
+      raspberryInput = Serial3.readString();
+      if(raspberryInput = "ar"){
+        break;
+      }
+      else{
+        error();
+      }
 
-   }
+    }
     
   }
   
