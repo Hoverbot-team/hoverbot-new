@@ -13,13 +13,14 @@ void checkArduinoConnection(){
     string in = uart.read();
     while(in != "rr"){
         in = uart.read();
+        cout << "no connection" << endl;
     }
     uart.write("ar");
 }
 int main(){
 
 
-
+    checkArduinoConnection();
     while(1){
     }
     
