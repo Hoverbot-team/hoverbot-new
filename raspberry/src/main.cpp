@@ -23,6 +23,7 @@ int main(){
 
     checkArduinoConnection();
     while(1){
+    
     }
     
 }
