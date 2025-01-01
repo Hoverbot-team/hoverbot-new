@@ -13,6 +13,7 @@ set(SOURCES
     src/sensors/gyro.cpp
     src/uart.cpp
     src/navigation/navVideo.cpp
+    src/movement/engines.cpp
 )
 
 add_executable(Hoverbot ${SOURCES})

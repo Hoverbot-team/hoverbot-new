@@ -12,7 +12,6 @@ void UART::write(string input)
     for(i = 0; i <= input.length(); i++){
         serialPutchar(UART::serialPort,input[i]);
     }
-    
 }
 
 string UART::read()
