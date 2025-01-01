@@ -38,10 +38,6 @@ int main(){
 
     //checkArduinoConnection();
     while(1){
-        eng_L.engine_write(3,false);
-        delayMicroseconds(1000000);
-        eng_L.engine_write(3,true);
-        delayMicroseconds(1000000);
     }
     
 }
