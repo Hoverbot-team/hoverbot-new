@@ -2,6 +2,7 @@
 #include <iostream>
 #include "uart.hpp"
 #include <opencv2/opencv.hpp>
+#include "navigation/navVideo.hpp"
 using namespace std;
 //global variables
 UART uart(115200);
@@ -22,12 +23,12 @@ void checkArduinoConnection(){
 int main(){
     // Create a VideoCapture object to capture video from the default camera (index 0)
     cv::VideoCapture camera_cap(0);
-
     // Check if the camera opened successfully
     if (!camera_cap.isOpened()) {
         std::cerr << "Error: Could not open the camera!" << std::endl;
         return -1;
     }
+    vidGuidance VidGuidance(camera_cap);
     checkArduinoConnection();
     while(1){
     
