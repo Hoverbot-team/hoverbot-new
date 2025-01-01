@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include_directories(include)
+find_package(OpenCV REQUIRED)
 
 set(SOURCES
     src/main.cpp
@@ -14,4 +15,5 @@ set(SOURCES
 )
 
 add_executable(Hoverbot ${SOURCES})
-target_link_libraries(Hoverbot wiringPi)
+target_link_libraries(Hoverbot wiringPi ${OpenCV_LIBS})
+
