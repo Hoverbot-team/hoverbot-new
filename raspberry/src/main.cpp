@@ -23,18 +23,25 @@ void checkArduinoConnection(){
 }
 int main(){
     // Create a VideoCapture object to capture video from the default camera (index 0)
-    Engines eng_L(26,27);
-    Engines eng_R(23,22);
-    cv::VideoCapture camera_cap(0);
+    Engines eng_L(12,5);
+    Engines eng_R(13,6);
+
     // Check if the camera opened successfully
+    /*
+    cv::VideoCapture camera_cap(0);
     if (!camera_cap.isOpened()) {
         std::cerr << "Error: Could not open the camera!" << std::endl;
         return -1;
     }
     vidGuidance VidGuidance(camera_cap);
+    */
+
     //checkArduinoConnection();
     while(1){
-    
+        eng_L.engine_write(3,false);
+        delayMicroseconds(1000000);
+        eng_L.engine_write(3,true);
+        delayMicroseconds(1000000);
     }
     
 }

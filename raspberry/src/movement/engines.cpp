@@ -1,7 +1,9 @@
 #include "movement/engines.hpp"
 #include <iostream>
+#include <iostream>
 
 #include <thread>  
+using namespace std;
 Engines::Engines(int Pin, int Dir_pin): pin(Pin), dir(Dir_pin){
     if (wiringPiSetupGpio() == -1) {
         std::cerr << "Failed to initialize WiringPi" << std::endl;
@@ -22,10 +24,14 @@ void Engines::engine_write(int speed, bool Direction){
 
     }
     if(Direction){
-        digitalWrite(dir,1);
+        digitalWrite(dir, LOW);
+        cout << "dir change" << endl;
+
     }
     else{
-        digitalWrite(dir,0);
+        digitalWrite(dir, HIGH);
+        cout << "dir change" << endl;
+
 
     }
 
