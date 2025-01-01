@@ -14,6 +14,7 @@ set(SOURCES
     src/uart.cpp
     src/navigation/navVideo.cpp
     src/movement/engines.cpp
+    src/movement/PID.cpp
 )
 
 add_executable(Hoverbot ${SOURCES})

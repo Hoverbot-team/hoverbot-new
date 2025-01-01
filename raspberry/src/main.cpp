@@ -4,6 +4,7 @@
 #include <opencv2/opencv.hpp>
 #include "navigation/navVideo.hpp"
 #include "movement/engines.hpp"
+#include "movement/PID.hpp"
 using namespace std;
 //global variables
 UART uart(115200);
@@ -22,11 +23,10 @@ void checkArduinoConnection(){
     cout << "connection established" << endl;
 }
 int main(){
-    // Create a VideoCapture object to capture video from the default camera (index 0)
+    double setpoint = 0.0;    // Target angle (e.g., upright position)
+    PID pid(0.2, 0.01, 0);
     Engines eng_L(12,5);
     Engines eng_R(13,6);
-
-    // Check if the camera opened successfully
     /*
     cv::VideoCapture camera_cap(0);
     if (!camera_cap.isOpened()) {
@@ -38,6 +38,8 @@ int main(){
 
     //checkArduinoConnection();
     while(1){
+        double correction = pid.calculate(setpoint, gyro.roll());
+        cout<< correction <<endl;
     }
     
 }
