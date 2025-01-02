@@ -23,7 +23,7 @@ void checkArduinoConnection(){
     cout << "connection established" << endl;
 }
 int main(){
-    double setpoint = 0.0;    // Target angle (e.g., upright position)
+    double setpoint = 0;    // Target angle (e.g., upright position)
     PID pid(0.2, 0.01, 0);
     Engines eng_L(12,5);
     Engines eng_R(13,6);
@@ -38,8 +38,24 @@ int main(){
 
     //checkArduinoConnection();
     while(1){
+        int baseSpeed = 0;
         double correction = pid.calculate(setpoint, gyro.roll());
-        cout<< correction <<endl;
+        int motorLeftSpeed = baseSpeed - correction;
+        int motorRightSpeed = baseSpeed + correction;
+        if (correction > 0){
+            eng_L.engine_write(abs(motorLeftSpeed),true);
+            eng_R.engine_write(abs(motorRightSpeed),false);
+            cout<< motorLeftSpeed << endl; 
+            cout <<  motorRightSpeed <<endl;
+
+        }
+        else{
+            eng_L.engine_write(abs(motorLeftSpeed),false);
+            eng_R.engine_write(abs(motorRightSpeed),true);
+            cout<< motorLeftSpeed << endl; 
+            cout <<  motorRightSpeed <<endl;
+        }  
+        
     }
     
 }
