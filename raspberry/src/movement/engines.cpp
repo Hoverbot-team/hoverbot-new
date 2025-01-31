@@ -19,23 +19,29 @@ Engines::~Engines(){
     softPwmWrite(pin, 0);
 }
 void Engines::engine_write(int speed, bool Direction){
-    if(speed >= 100){
-        speed = 0;
+    if(!Stop){
+        if(speed >= 100){
+            speed = 0;
 
+            }
+        if(Direction){
+            digitalWrite(dir, LOW);
+            cout << "dir change" << endl;
+
+        }
+        else{
+            digitalWrite(dir, HIGH);
+            cout << "dir change" << endl;
+
+
+        }
+
+        softPwmWrite(pin, speed);
+    }else{
+        stop();
+        cout<<"engines stopped"<<endl;
     }
-    if(Direction){
-        digitalWrite(dir, LOW);
-        cout << "dir change" << endl;
 
-    }
-    else{
-        digitalWrite(dir, HIGH);
-        cout << "dir change" << endl;
-
-
-    }
-
-    softPwmWrite(pin, speed);
 
     
     
