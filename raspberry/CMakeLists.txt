@@ -11,8 +11,6 @@ find_package(OpenCV REQUIRED)
 set(SOURCES
     src/main.cpp
     src/sensors/gyro.cpp
-    src/uart.cpp
-    src/navigation/navVideo.cpp
     src/movement/engines.cpp
     src/movement/PID.cpp
 )
