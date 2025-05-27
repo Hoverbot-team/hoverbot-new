@@ -4,6 +4,7 @@
 #include "movement/engines.hpp"
 #include "movement/PID.hpp"
 #include <thread>
+#include "movement/movement.hpp"
 using namespace std;
 //global variables
 MPU6050 gyro;
