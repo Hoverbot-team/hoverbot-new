@@ -29,10 +29,10 @@ void loop() {
     int packetSize = LoRa.parsePacket();
     if (packetSize == sizeof(raspberry))
       LoRa.readBytes((uint8_t *)&received, sizeof(raspberry));
+      Serial.write((uint8_t *)&received, sizeof(raspberry));
   }
   while (Serial.available()) {
-    Serial.readBytes((uint8_t*)&send, sizeof(send));
-    LoRa.write((uint8_t*)&send, sizeof(send));
-
+    Serial.readBytes((uint8_t *)&send, sizeof(send));
+    LoRa.write((uint8_t *)&send, sizeof(send));
   }
 }
