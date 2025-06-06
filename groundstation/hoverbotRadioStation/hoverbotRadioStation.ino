@@ -13,7 +13,7 @@ struct command {
 raspberry received;
 command send;
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   LoRa.setPins(SS, RST, DIO0);
   if (!LoRa.begin(433E6)) {
     while (1);

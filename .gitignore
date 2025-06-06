@@ -1,3 +1,4 @@
 build/*
 .vscode
 raspberry/build
+groundstation/app/.idea/*
