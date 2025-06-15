@@ -1,21 +1,39 @@
-from PyQt5.QtWidgets import QApplication, QLabel, QWidget
+from PyQt5.QtWidgets import *
 import sys
 import serial
 import struct
 import serial.tools.list_ports
+UARTDevices = []
+def selectionChanged(index):
+    transceiver = serial.Serial(rf'\\.\{UARTDevices[index]}', baudrate=115200, timeout=1)
+    print("uart initialised")
+
+
+
 ports = serial.tools.list_ports.comports()
-for port in ports:
-    print(port.device)
-transceiver = serial.Serial(r'\\.\COM10', baudrate=115200, timeout=1)
+transceiver = 0
+
 app = QApplication(sys.argv)
-
-
-
 window = QWidget()
 window.setWindowTitle("My PyQt App")
 window.setGeometry(100, 100, 400, 400)
 label = QLabel('<center>no data</center>', parent=window)
+
+#create selector
+
+for port in ports:
+    UARTDevices.append(port.device)
+    print(UARTDevices)
+
+selcector = QComboBox(parent=window)
+selcector.setGeometry(20,20,60,30)
+selcector.addItems(UARTDevices)
+selcector.currentIndexChanged.connect(selectionChanged)
 window.show()
+
+
+# UART begin
+
 sys.exit(app.exec_())
 STRUCT_FORMAT = '<i'  # Little-endian: int
 STRUCT_SIZE = struct.calcsize(STRUCT_FORMAT)
@@ -24,3 +42,6 @@ while 1:
     if len(data) == STRUCT_SIZE:
         error, = struct.unpack(STRUCT_FORMAT, data)
         label.setText(str(error))
+
+
+
