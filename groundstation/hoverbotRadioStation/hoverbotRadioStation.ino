@@ -1,22 +1,15 @@
 #include <SPI.h>
 #include <LoRa.h>
+
 #define SS 15
 #define RST 16
 #define DIO0 5
 
-struct raspberry {
-  int error;
-} __attribute__((__packed__));
-struct command {
-  int command;
-} __attribute__((__packed__));
-raspberry received;
-command send;
 void setup() {
   Serial.begin(115200);
   LoRa.setPins(SS, RST, DIO0);
   if (!LoRa.begin(433E6)) {
-    while (1);
+    while (1); // halt if LoRa init fails
   }
   LoRa.setSpreadingFactor(7);
   LoRa.setSignalBandwidth(125E3);
@@ -24,15 +17,20 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  while (LoRa.available()) {
-    int packetSize = LoRa.parsePacket();
-    if (packetSize == sizeof(raspberry))
-      LoRa.readBytes((uint8_t *)&received, sizeof(raspberry));
-      Serial.write((uint8_t *)&received, sizeof(raspberry));
+  // Read from LoRa and send to Serial
+  int packetSize = LoRa.parsePacket();
+  if (packetSize > 0) {
+    while (LoRa.available()) {
+      Serial.write(LoRa.read());  // byte-by-byte forwarding
+    }
   }
-  while (Serial.available()) {
-    Serial.readBytes((uint8_t *)&send, sizeof(send));
-    LoRa.write((uint8_t *)&send, sizeof(send));
+
+  // Read from Serial and send to LoRa
+  if (Serial.available()) {
+    LoRa.beginPacket();
+    while (Serial.available()) {
+      LoRa.write(Serial.read());  // byte-by-byte forwarding
+    }
+    LoRa.endPacket();
   }
 }
