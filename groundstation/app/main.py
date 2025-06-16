@@ -5,8 +5,11 @@ import struct
 import serial.tools.list_ports
 UARTDevices = []
 def selectionChanged(index):
-    transceiver = serial.Serial(rf'\\.\{UARTDevices[index]}', baudrate=115200, timeout=1)
-    print("uart initialised")
+    try:
+        transceiver = serial.Serial(rf'\\.\{UARTDevices[index]}', baudrate=115200, timeout=1)
+        print("uart initialised")
+    except:
+        print("init failed")
 
 
 
@@ -16,7 +19,7 @@ transceiver = 0
 app = QApplication(sys.argv)
 window = QWidget()
 window.setWindowTitle("My PyQt App")
-window.setGeometry(100, 100, 400, 400)
+window.setGeometry(100, 100, 600, 400)
 label = QLabel('<center>no data</center>', parent=window)
 
 #create selector
@@ -26,7 +29,7 @@ for port in ports:
     print(UARTDevices)
 
 selcector = QComboBox(parent=window)
-selcector.setGeometry(20,20,60,30)
+selcector.setGeometry(0,0,60,30)
 selcector.addItems(UARTDevices)
 selcector.currentIndexChanged.connect(selectionChanged)
 window.show()
