@@ -13,6 +13,7 @@ set(SOURCES
     src/sensors/gyro.cpp
     src/movement/engines.cpp
     src/movement/PID.cpp
+    src/modules/codePlugins/loader.cpp
 )
 
 add_executable(Hoverbot ${SOURCES})

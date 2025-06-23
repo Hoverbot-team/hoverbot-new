@@ -5,6 +5,7 @@
 #include "movement/PID.hpp"
 #include <thread>
 #include "movement/movement.hpp"
+#include "modules/codePlugins/loader.hpp"
 using namespace std;
 //global variables
 MPU6050 gyro;
@@ -30,6 +31,11 @@ void onExit() {
 }
 
 int main(){
+    auto mods = loadMods("/home/a/plugins/");
+    for (auto& mod : mods) {
+        mod.instance->onUpdate(0.016f); // fake delta time
+    }
+    /*
     atexit(onExit);
     thread safety(safe); //activate safety system
     safety.detach();
@@ -56,5 +62,5 @@ int main(){
         }  
         delayMicroseconds(10);
     }
-    
+    */
 }
