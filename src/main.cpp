@@ -8,26 +8,14 @@
 #include "modules/codePlugins/loader.hpp"
 using namespace std;
 //global variables
-MPU6050 gyro;
-Engines eng_L(12,5);
-Engines eng_R(13,6);
+movement Movement(12,5,13,6);
 
 float mapValue(float x, float in_min, float in_max, float out_min, float out_max) {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
-void safe(){
-    while(abs(gyro.read_gaccel_X()) < 60){
-        
-    }
-    eng_L.Stop = true;
-    eng_R.Stop = true;
-    cout<<"automatic shutdown event occured"<<endl;
-    exit(0);
-    
-}
 void onExit() {
-    eng_L.stop();
-    eng_R.stop();
+    Movement.stop();
+    cout << "Exiting program, stopping engines." << endl;
 }
 
 int main(){

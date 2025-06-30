@@ -14,6 +14,7 @@ set(SOURCES
     src/movement/engines.cpp
     src/movement/PID.cpp
     src/modules/codePlugins/loader.cpp
+    src/movement/movement.cpp
 )
 
 add_executable(Hoverbot ${SOURCES})
