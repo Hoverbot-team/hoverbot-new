@@ -22,6 +22,7 @@ int main(){
     for (auto& mod : mods) {
         mod.instance->onUpdate(0.016f); // fake delta time
     }
+    Movement.enable();
     logs.log("Hoverbot started successfully.");
     /*
     atexit(onExit);
@@ -32,7 +33,6 @@ int main(){
 
     }
     */
-   Movement.enable();
    while (true)
    {
     /* code */
