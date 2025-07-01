@@ -29,9 +29,9 @@ public:
     float read_raw_X();
     float read_raw_Y();
     float read_raw_Z();
-    float read_gaccel_X();
-    float read_gaccel_Y();
-    float read_gaccel_Z();
+    float read_gyro_X();
+    float read_gyro_Y();
+    float read_gyro_Z();
     float read_accel_raw_X();
     float read_accel_raw_Y();
     float read_accel_raw_Z();
@@ -40,6 +40,10 @@ public:
     float read_accel_Z();
     float pitch();
     float roll();
+    // Integrate gyro X, Y, Z to get degrees of rotation
+    float calculateGyroXRotation();
+    float calculateGyroYRotation();
+    float calculateGyroZRotation();
 private:
     int fd;  // File descriptor for I2C communication
     int read_word_2c(int addr);  // Helper to read 16-bit values from I2C

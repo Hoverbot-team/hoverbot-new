@@ -1,9 +1,10 @@
 #include "movement/PID.hpp"
-
+#include <iostream>
 // Constructor
 PID::PID(double Kp, double Ki, double Kd)
     : Kp(Kp), Ki(Ki), Kd(Kd), previousError(0), integral(0) {
     lastTime = std::chrono::high_resolution_clock::now();
+    logs.log("PID controller initialized with Kp: " + std::to_string(Kp) + ", Ki: " + std::to_string(Ki) + ", Kd: " + std::to_string(Kd));
 }
 
 // Method to calculate PID output

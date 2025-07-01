@@ -1,4 +1,6 @@
 #include "sensors/gyro.hpp"
+#include <chrono>
+
 int fd;
 
 // Constructor: Initialize I2C communication with MPU6050
@@ -26,17 +28,17 @@ float MPU6050:: read_raw_Y(){
 float MPU6050:: read_raw_Z(){
     return read(GYRO_ZOUT_H);
 }
-float MPU6050:: read_gaccel_X(){
+float MPU6050:: read_gyro_X(){
     float gx = read_raw_X() / 131.0;
     return gx;
     
 }
-float MPU6050:: read_gaccel_Y(){
+float MPU6050:: read_gyro_Y(){
     float gx = read_raw_Y() / 131.0;
     return gx;
     
 }
-float MPU6050:: read_gaccel_Z(){
+float MPU6050:: read_gyro_Z(){
     float gx = read_raw_Z() / 131.0;
     return gx;
 }
@@ -96,4 +98,36 @@ void MPU6050::calculateAccelTilt(float accX, float accY, float accZ, float &roll
 
 
 // Function to calculate degrees of rotation from gyro data
+float MPU6050::calculateGyroZRotation() {
+    static std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
+    static float accumulatedAngle = 0.0f;
+    auto now = std::chrono::high_resolution_clock::now();
+    float dt = std::chrono::duration<float>(now - lastTime).count();
+    lastTime = now;
+    float gyroZ = read_gyro_Z(); // degrees per second
+    accumulatedAngle += gyroZ * dt; // degrees
+    return accumulatedAngle;
+}
+
+float MPU6050::calculateGyroXRotation() {
+    static std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
+    static float accumulatedAngle = 0.0f;
+    auto now = std::chrono::high_resolution_clock::now();
+    float dt = std::chrono::duration<float>(now - lastTime).count();
+    lastTime = now;
+    float gyroX = read_gyro_X(); // degrees per second
+    accumulatedAngle += gyroX * dt; // degrees
+    return accumulatedAngle;
+}
+
+float MPU6050::calculateGyroYRotation() {
+    static std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
+    static float accumulatedAngle = 0.0f;
+    auto now = std::chrono::high_resolution_clock::now();
+    float dt = std::chrono::duration<float>(now - lastTime).count();
+    lastTime = now;
+    float gyroY = read_gyro_Y(); // degrees per second
+    accumulatedAngle += gyroY * dt; // degrees
+    return accumulatedAngle;
+}
 

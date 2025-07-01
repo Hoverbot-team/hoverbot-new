@@ -26,12 +26,12 @@ void Engines::engine_write(int speed, bool Direction){
             }
         if(Direction){
             digitalWrite(dir, LOW);
-            cout << "dir change" << endl;
+            //cout << "dir change" << endl;
 
         }
         else{
             digitalWrite(dir, HIGH);
-            cout << "dir change" << endl;
+            //cout << "dir change" << endl;
 
 
         }

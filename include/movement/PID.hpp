@@ -2,7 +2,7 @@
 #define PID_HPP
 
 #include <chrono>
-
+#include "misc/logs/log.hpp"
 class PID {
 private:
     double Kp, Ki, Kd;       // PID constants

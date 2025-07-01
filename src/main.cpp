@@ -6,10 +6,9 @@
 #include <thread>
 #include "movement/movement.hpp"
 #include "modules/codePlugins/loader.hpp"
+#include "misc/logs/log.hpp"
 using namespace std;
-//global variables
-movement Movement(12,5,13,6);
-
+movement Movement(12,5,13,6,0.6,0.002,0);
 float mapValue(float x, float in_min, float in_max, float out_min, float out_max) {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
@@ -23,32 +22,20 @@ int main(){
     for (auto& mod : mods) {
         mod.instance->onUpdate(0.016f); // fake delta time
     }
+    logs.log("Hoverbot started successfully.");
     /*
     atexit(onExit);
     thread safety(safe); //activate safety system
     safety.detach();
-    double setpoint = 0;    // Target angle 
-    PID pid(0.6, 0.002, 0);
+       // Target angle 
     while(1){
-        int baseSpeed = 0;
-        double correction = pid.calculate(setpoint, gyro.roll());
-        int motorLeftSpeed = (baseSpeed - correction)*2;
-        int motorRightSpeed = (baseSpeed + correction)*2;
 
-        if (correction > 0){
-            eng_L.engine_write(abs(motorLeftSpeed),true);
-            eng_R.engine_write(abs(motorRightSpeed),false);
-            cout<< motorLeftSpeed << endl; 
-            cout <<  motorRightSpeed <<endl;
-
-        }
-        else{
-            eng_L.engine_write(abs(motorLeftSpeed),false);
-            eng_R.engine_write(abs(motorRightSpeed),true);
-            cout<< motorLeftSpeed << endl; 
-            cout <<  motorRightSpeed <<endl;
-        }  
-        delayMicroseconds(10);
     }
     */
+   Movement.enable();
+   while (true)
+   {
+    /* code */
+   }
+   
 }
