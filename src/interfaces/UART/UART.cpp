@@ -3,7 +3,6 @@
 #include <wiringSerial.h>
 #include <stdexcept>
 #include <cstring>
-
 Uart::Uart(const std::string& device, int baudRate) {
     if (wiringPiSetup() == -1) {
         throw std::runtime_error("Failed to initialize WiringPi");
@@ -21,24 +20,20 @@ Uart::~Uart() {
     }
 }
 
-void Uart::write(const std::string& data) {
-    serialPuts(fd, data.c_str());
+void Uart::writeByte(uint8_t byte) {
+    serialPutchar(fd, byte);
+}
+
+void Uart::writeBytes(const uint8_t* data, size_t length) {
+    for (size_t i = 0; i < length; ++i) {
+        serialPutchar(fd, data[i]);
+    }
 }
 
 bool Uart::available() const {
     return serialDataAvail(fd) > 0;
 }
 
-char Uart::readChar() {
-    return serialGetchar(fd);
-}
-
-std::string Uart::readLine() {
-    std::string line;
-    while (available()) {
-        char c = readChar();
-        if (c == '\n') break;
-        line += c;
-    }
-    return line;
+uint8_t Uart::readByte() {
+    return static_cast<uint8_t>(serialGetchar(fd));
 }
