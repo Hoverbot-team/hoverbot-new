@@ -40,10 +40,6 @@ public:
     float read_accel_Z();
     float pitch();
     float roll();
-    // Integrate gyro X, Y, Z to get degrees of rotation
-    float calculateGyroXRotation();
-    float calculateGyroYRotation();
-    float calculateGyroZRotation();
 private:
     int fd;  // File descriptor for I2C communication
     int read_word_2c(int addr);  // Helper to read 16-bit values from I2C
@@ -51,6 +47,7 @@ private:
     float gyroToDegrees(float angularVelocity);
     float convertAccel(int16_t raw_value);
     void calculateAccelTilt(float accX, float accY, float accZ, float &roll, float &pitch);
+
 };
 
 #endif  // GYRO_H

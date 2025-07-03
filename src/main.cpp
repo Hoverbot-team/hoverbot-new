@@ -35,7 +35,6 @@ int main(){
     */
    while (true)
    {
-    /* code */
    }
    
 }

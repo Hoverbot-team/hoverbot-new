@@ -16,6 +16,8 @@ set(SOURCES
     src/modules/codePlugins/loader.cpp
     src/movement/movement.cpp
     src/misc/logs/log.cpp
+    src/interfaces/OLED/SSD1306.cpp
+    src/interfaces/UART/UART.cpp
 )
 
 add_executable(Hoverbot ${SOURCES})

@@ -95,39 +95,3 @@ void MPU6050::calculateAccelTilt(float accX, float accY, float accZ, float &roll
     roll = atan2(accY, accZ) * 180 / M_PI;  // Convert radians to degrees
     pitch = atan2(-accX, sqrt(accY * accY + accZ * accZ)) * 180 / M_PI; // Convert radians to degrees
 }
-
-
-// Function to calculate degrees of rotation from gyro data
-float MPU6050::calculateGyroZRotation() {
-    static std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
-    static float accumulatedAngle = 0.0f;
-    auto now = std::chrono::high_resolution_clock::now();
-    float dt = std::chrono::duration<float>(now - lastTime).count();
-    lastTime = now;
-    float gyroZ = read_gyro_Z(); // degrees per second
-    accumulatedAngle += gyroZ * dt; // degrees
-    return accumulatedAngle;
-}
-
-float MPU6050::calculateGyroXRotation() {
-    static std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
-    static float accumulatedAngle = 0.0f;
-    auto now = std::chrono::high_resolution_clock::now();
-    float dt = std::chrono::duration<float>(now - lastTime).count();
-    lastTime = now;
-    float gyroX = read_gyro_X(); // degrees per second
-    accumulatedAngle += gyroX * dt; // degrees
-    return accumulatedAngle;
-}
-
-float MPU6050::calculateGyroYRotation() {
-    static std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
-    static float accumulatedAngle = 0.0f;
-    auto now = std::chrono::high_resolution_clock::now();
-    float dt = std::chrono::duration<float>(now - lastTime).count();
-    lastTime = now;
-    float gyroY = read_gyro_Y(); // degrees per second
-    accumulatedAngle += gyroY * dt; // degrees
-    return accumulatedAngle;
-}
-
