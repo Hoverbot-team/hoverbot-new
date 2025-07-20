@@ -10,7 +10,7 @@ find_package(OpenCV REQUIRED)
 
 set(SOURCES
     src/main.cpp
-    src/sensors/gyro.cpp
+    src/sensors/rotation/gyro.cpp
     src/movement/engines.cpp
     src/movement/PID.cpp
     src/modules/codePlugins/loader.cpp
@@ -18,6 +18,7 @@ set(SOURCES
     src/misc/logs/log.cpp
     src/interfaces/OLED/SSD1306.cpp
     src/interfaces/UART/UART.cpp
+    src/sensors/rotation/magnetometer.cpp
 )
 
 add_executable(Hoverbot ${SOURCES})

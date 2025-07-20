@@ -1,4 +1,4 @@
-#include "sensors/gyro.hpp"
+#include "sensors/rotation/gyro.hpp"
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include "movement/engines.hpp"
@@ -7,6 +7,7 @@
 #include "movement/movement.hpp"
 #include "modules/codePlugins/loader.hpp"
 #include "misc/logs/log.hpp"
+#include "sensors/rotation/magnetometer.hpp"
 using namespace std;
 movement Movement(12,5,13,6,0.6,0.002,0);
 float mapValue(float x, float in_min, float in_max, float out_min, float out_max) {
@@ -24,6 +25,7 @@ int main(){
     }
     Movement.enable();
     logs.log("Hoverbot started successfully.");
+    HMC5883L magnetometer; // Initialize the magnetometer
     /*
     atexit(onExit);
     thread safety(safe); //activate safety system

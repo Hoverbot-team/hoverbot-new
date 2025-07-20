@@ -1,4 +1,4 @@
-#include <sensors/gyro.hpp>
+#include <sensors/rotation/gyro.hpp>
 #include <movement/engines.hpp>
 #include <movement/PID.hpp>
 #include <thread>
