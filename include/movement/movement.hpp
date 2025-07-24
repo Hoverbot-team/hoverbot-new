@@ -18,6 +18,7 @@ class movement {
         int kd = 0;
         double setpoint = 0; 
         int baseSpeed = 0; // Base speed for the motors, can be adjusted
+        void onExit();
     private:
         bool isEnabled = false;
 

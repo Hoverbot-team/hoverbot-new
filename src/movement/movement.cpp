@@ -1,6 +1,7 @@
 #include "movement/movement.hpp"
 #include <iostream>
 using namespace std;
+
 movement::movement(int speedPinLeft, int dirPinLeft, int speedPinRight, int dirPinRight,double pid_kp,double pid_ki,double pid_kd): eng_L(speedPinLeft, dirPinLeft), eng_R(speedPinRight, dirPinRight), pid(pid_kp, pid_ki, pid_kd)
 {
     logs.log("initialising movement");
@@ -15,6 +16,7 @@ movement::~movement() {
     eng_L.stop();
     eng_R.stop();
 }
+
 void movement::loop() {
     logs.log("Movement loop starting");
     while (true) {
