@@ -9,7 +9,7 @@
 #include "misc/logs/log.hpp"
 #include "sensors/rotation/magnetometer.hpp"
 using namespace std;
-movement Movement(12,5,13,6,0.6,0.002,0);
+movement Movement(12,5,13,6,0.6,0,0);
 float mapValue(float x, float in_min, float in_max, float out_min, float out_max) {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
