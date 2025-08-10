@@ -18,7 +18,7 @@ class movement {
         int kd = 0;
         double setpoint = 0; 
         int baseSpeed = 0; // Base speed for the motors, can be adjusted
-        void onExit();
+        
     private:
         bool isEnabled = false;
 
@@ -27,6 +27,6 @@ class movement {
         Engines eng_R;
         PID pid;
         void safe();
-
+        float simpleStability(float x, float in_min, float in_max, float out_min, float out_max);
         void loop();
 };

@@ -38,11 +38,6 @@ void Engines::engine_write(int speed, bool Direction){
         stop();
         cout<<"engines stopped"<<endl;
     }
-
-
-    
-    
-
 }
 void Engines::stop(){
     softPwmWrite(pin, 0);

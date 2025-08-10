@@ -1,5 +1,6 @@
 #include "sensors/rotation/gyro.hpp"
 #include <iostream>
+#include <csignal>
 #include <opencv2/opencv.hpp>
 #include "movement/engines.hpp"
 #include "movement/PID.hpp"
@@ -10,15 +11,18 @@
 #include "sensors/rotation/magnetometer.hpp"
 using namespace std;
 movement Movement(12,5,13,6,0.6,0,0);
-float mapValue(float x, float in_min, float in_max, float out_min, float out_max) {
-    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+void handleSigint(int sig){
+    cout << "SIGINT received, stopping movement..." << endl;
+    Movement.stop();
+    logs.log("Movement stopped due to SIGINT.");
+    exit(0);
 }
-
 int main(){
     auto mods = loadMods("/home/a/plugins/");
     for (auto& mod : mods) {
         mod.instance->onUpdate(0.016f); // fake delta time
     }
+    signal(SIGINT, handleSigint);
     Movement.enable();
     logs.log("Hoverbot started successfully.");
    while (true)
