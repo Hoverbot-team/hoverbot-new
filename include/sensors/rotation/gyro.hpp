@@ -47,6 +47,10 @@ private:
     float gyroToDegrees(float angularVelocity);
     float convertAccel(int16_t raw_value);
     void calculateAccelTilt(float accX, float accY, float accZ, float &roll, float &pitch);
+    float fusedRoll = 0.0f;
+    float fusedPitch = 0.0f;
+    std::chrono::steady_clock::time_point lastUpdate;
+    bool initialized = false;
 
 };
 

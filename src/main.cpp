@@ -10,7 +10,7 @@
 #include "misc/logs/log.hpp"
 #include "sensors/rotation/magnetometer.hpp"
 using namespace std;
-movement Movement(12,5,13,6,0.6,0,0);
+movement Movement(12,5,13,6,0.3,0,0);
 void handleSigint(int sig){
     cout << "SIGINT received, stopping movement..." << endl;
     Movement.stop();
@@ -23,7 +23,8 @@ int main(){
         mod.instance->onUpdate(0.016f); // fake delta time
     }
     signal(SIGINT, handleSigint);
-    Movement.enable();
+    signal(SIGTERM, handleSigint);
+    //Movement.enable();
     logs.log("Hoverbot started successfully.");
    while (true)
    {
