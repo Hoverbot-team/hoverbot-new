@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
-
 project(Hoverbot)
 
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR arm)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
