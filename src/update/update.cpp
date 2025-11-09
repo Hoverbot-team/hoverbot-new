@@ -6,8 +6,19 @@ Update::Update(){
 
 }
 void Update::SCUUpdate(){
-    std::cout << "SCU Updater installed" << std::endl;
+    logs.log("SCU Updater installed");
     while(true){
+        if(fileExists(updateFolder "update.hex")){
 
+
+        }
+        else{
+            std::cout << "No update file found" << std::endl;
+        }
+        std::this_thread::sleep_for(std::chrono::minutes(1));
     }
+}
+bool Update::fileExists(const std::string& filename) {
+    std::ifstream file(filename);
+    return file.good();
 }

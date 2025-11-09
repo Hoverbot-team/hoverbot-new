@@ -5,6 +5,8 @@ set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(WORKING_DIR $ENV{HOME}/hoverbot)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${WORKING_DIRECTORY})
 include_directories(include)
 find_package(OpenCV REQUIRED)
 
@@ -17,7 +19,12 @@ set(SOURCES
     src/misc/logs/log.cpp
     src/interfaces/OLED/SSD1306.cpp
     src/update/update.cpp
+    src/misc/exec/exec.cpp
 )
 
 add_executable(Hoverbot ${SOURCES})
 target_link_libraries(Hoverbot wiringPi ${OpenCV_LIBS})
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/build/Hoverbot")
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/build/${PROJECT_NAME}" "${WORKING_DIR}/${PROJECT_NAME}" COPYONLY)
+endif()
+
