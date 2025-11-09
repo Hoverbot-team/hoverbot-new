@@ -5,7 +5,6 @@ set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-
 include_directories(include)
 find_package(OpenCV REQUIRED)
 
@@ -14,14 +13,11 @@ set(SOURCES
     src/sensors/rotation/gyro.cpp
     src/movement/engines.cpp
     src/movement/PID.cpp
-    src/modules/codePlugins/loader.cpp
     src/movement/movement.cpp
     src/misc/logs/log.cpp
     src/interfaces/OLED/SSD1306.cpp
-    src/interfaces/UART/UART.cpp
-    src/sensors/rotation/magnetometer.cpp
+    src/update/update.cpp
 )
 
 add_executable(Hoverbot ${SOURCES})
 target_link_libraries(Hoverbot wiringPi ${OpenCV_LIBS})
-

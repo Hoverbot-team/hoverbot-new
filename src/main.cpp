@@ -8,7 +8,7 @@
 #include "movement/movement.hpp"
 #include "modules/codePlugins/loader.hpp"
 #include "misc/logs/log.hpp"
-#include "sensors/rotation/magnetometer.hpp"
+#include "update/update.hpp"
 using namespace std;
 movement Movement(12,5,13,6,0.3,0,0);
 void handleSigint(int sig){
@@ -18,16 +18,12 @@ void handleSigint(int sig){
     exit(0);
 }
 int main(){
-    auto mods = loadMods("/home/a/plugins/");
-    for (auto& mod : mods) {
-        mod.instance->onUpdate(0.016f); // fake delta time
-    }
     signal(SIGINT, handleSigint);
     signal(SIGTERM, handleSigint);
-    //Movement.enable();
+    Update update;
     logs.log("Hoverbot started successfully.");
    while (true)
    {
    }
-   
+
 }
