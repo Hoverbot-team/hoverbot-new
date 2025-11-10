@@ -1,11 +1,11 @@
 #include "update/update.hpp"
 
 Update::Update(){
-    std::thread updateSCU(&Update::SCUUpdate, this);
+    std::thread updateSCU(&Update::SCUUpdateHandler, this);
     updateSCU.detach();
 
 }
-void Update::SCUUpdate(){
+void Update::SCUUpdateHandler(){
     logs.log("SCU Updater installed");
     while(true){
         if(fileExists(updateFolder "update.hex")){

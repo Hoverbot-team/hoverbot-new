@@ -8,6 +8,6 @@ class Update {
 public:
 
     Update();
-    void SCUUpdate();
+    void SCUUpdateHandler();
     static bool fileExists(const std::string& filename);
 };
