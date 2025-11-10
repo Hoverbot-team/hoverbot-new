@@ -1,4 +1,6 @@
 # Hoverbot system
-In this repo you'll find the code that runs on the Raspberry. This program is basicaly the mind of the robot.
+CCU or the central computing units code. This program is basicaly the mind of the robot.
+# CCU requirements
+Raspberry PI 5 4gb.
 # Libraries needed
 Libudev, wiringPi, openCV
